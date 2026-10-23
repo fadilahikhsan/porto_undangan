@@ -1,15 +1,11 @@
-# Rico & Tiara — Betawi Motion
+# Cundamani Wedding Invitation
 
-Undangan pernikahan digital bernuansa Betawi klasik untuk Rico dan Tiara.
+Undangan pernikahan digital bernuansa Jawa klasik dengan animasi pembuka, galeri, countdown, RSVP, dan wedding gift.
 
-Fitur utama:
+## Menjalankan
 
-- Cover foto personal dengan nama tamu dari parameter `?to=`
-- Opening motion sinematik dengan pintu Betawi dan ilustrasi orisinal
-- Animasi scroll zoom, fade, serta masuk dari sisi kiri dan kanan
-- Countdown, galeri interaktif, Love Story, RSVP lokal, dan Wedding Gift
-- Musik ambient yang mulai setelah tombol undangan dibuka
-- Tampilan responsif untuk ponsel dan desktop
-- Footer `by SansWeb`
+Buka `index.html` langsung di browser atau jalankan static server pada folder repository.
 
-Informasi tanggal, alamat, nama orang tua, akun sosial, lokasi, dan rekening masih berupa data dummy.
+Foto dan musik masih berupa placeholder. Aset utama berada di folder `assets`.
+
+Live preview: https://cundamani-undangan-jawa.pokjasepuluhcicadas.chatgpt.site

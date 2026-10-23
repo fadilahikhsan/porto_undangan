@@ -1,0 +1,209 @@
+:root{
+  --ink:#203d2b;
+  --ink-2:#385640;
+  --olive:#707533;
+  --olive-deep:#374725;
+  --cream:#f5e7cc;
+  --paper:#fbf1dc;
+  --terracotta:#a54f3c;
+  --rose:#c78b7a;
+  --gold:#c5a35d;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',Arial,sans-serif;
+  --script:'Great Vibes',cursive;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#161a16}
+body{margin:0;color:var(--ink);font-family:var(--sans);background:#161a16}
+body.is-locked{overflow:hidden}
+button,input,textarea,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+.site-shell{position:relative;width:min(100%,500px);margin:auto;min-height:100vh;overflow:hidden;background:var(--paper);box-shadow:0 0 48px #0008}
+.container{width:min(88%,430px);margin:auto;position:relative;z-index:2}
+section{position:relative;overflow:hidden}
+.paper-section{background-color:var(--paper);background-image:radial-gradient(#795c4020 .7px,transparent .9px);background-size:17px 17px}
+.olive-section{background:#727635;color:#fff}
+.section-kicker{margin:0 0 7px;text-transform:uppercase;letter-spacing:.19em;font-size:.68rem;font-weight:600;color:var(--terracotta)}
+.section-kicker.light{color:#f5d6b8}
+.section-title{margin:0;font:600 clamp(2.25rem,9vw,3.2rem)/.95 var(--serif);color:var(--ink)}
+.section-title.light{color:#fff5dc}
+.small-serif{font:500 1.05rem var(--serif);letter-spacing:.04em}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 22px;border-radius:999px;border:1px solid transparent;font:600 .76rem var(--sans);letter-spacing:.02em;text-decoration:none;cursor:pointer;transition:transform .25s ease,filter .25s ease,background .25s ease}
+.button:active{transform:scale(.97)}
+.button:hover{filter:brightness(1.08)}
+.button--cover{color:#fff;background:linear-gradient(135deg,#6e7833,#899447);border-color:#f8e7bb;box-shadow:0 9px 30px #24321d80}
+.button--cream{color:var(--ink);background:#f7e7c6;border-color:#e0c696}
+.button--green{width:100%;color:#fff;background:var(--ink);border-color:#65806a}
+
+/* Cover */
+.cover{position:fixed;z-index:1000;inset:0;margin:auto;width:min(100%,500px);height:100svh;background:#55602d;transition:opacity .6s ease,visibility .6s ease,filter .6s ease}
+.cover.is-hidden{opacity:0;visibility:hidden;filter:blur(10px);pointer-events:none}
+.cover__photo{width:100%;height:100%;object-fit:cover;object-position:50% 38%;animation:coverBreath 12s ease-in-out infinite alternate}
+.cover__overlay{position:absolute;inset:0;background:linear-gradient(180deg,#26351e20 10%,#27391c08 38%,#1b2414e8 100%),radial-gradient(circle at 50% 64%,transparent 0 15%,#0c10062c 60%)}
+.cover__ornament{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 0 88%,#d7bd7d60 88% 89%,transparent 89%),linear-gradient(240deg,transparent 0 88%,#d7bd7d60 88% 89%,transparent 89%)}
+.cover__ornament:before,.cover__ornament:after{content:'✾';position:absolute;top:4%;font-size:4.5rem;color:#e4c7a2;filter:drop-shadow(0 3px 8px #0006);animation:sway 5s ease-in-out infinite}
+.cover__ornament:before{left:-10px;transform-origin:bottom left}.cover__ornament:after{right:-10px;transform-origin:bottom right;animation-delay:-2s}
+.cover__content{position:absolute;left:7%;right:7%;bottom:max(7%,32px);text-align:center;color:#fff;animation:coverCopy 1.4s .25s both}
+.cover__content .small-serif{text-shadow:0 2px 8px #000}
+.cover h1{margin:5px 0 20px;font:500 clamp(3.3rem,15vw,5rem)/.92 var(--serif);text-shadow:0 3px 15px #000b}
+.cover h1 i{font-family:var(--script);font-weight:400;color:#ead6a5}
+.guest-copy{margin:0 auto 18px;display:grid;gap:2px;width:max-content;max-width:100%;text-shadow:0 2px 8px #000}
+.guest-copy span{font:500 .75rem var(--serif)}
+.guest-copy strong{font:500 1rem var(--sans)}
+
+/* Opening motion */
+.opening-scene{position:fixed;z-index:990;inset:0;margin:auto;width:min(100%,500px);height:100svh;background:#eadbbd;visibility:hidden;opacity:0;pointer-events:none}
+.opening-scene.is-active{visibility:visible;opacity:1}
+.opening-scene.is-finished{opacity:0;transition:opacity .85s ease}
+.opening-scene__art{position:absolute;inset:-5%;background:url('./assets/betawi-garden.webp') center/cover no-repeat;transform:scale(1.16);filter:sepia(.12);animation:none}
+.opening-scene.is-active .opening-scene__art{animation:cinemaPush 5s cubic-bezier(.18,.58,.18,1) both}
+.opening-scene__glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 34%,#fffbd2a8,transparent 38%),linear-gradient(180deg,#14201210,#16231550);opacity:0}
+.opening-scene.is-active .opening-scene__glow{animation:lightBloom 5s ease both}
+.opening-scene__door{position:absolute;top:0;bottom:0;width:50%;background-color:#315033;background-image:linear-gradient(90deg,#1f382edd,#476342b8),repeating-linear-gradient(135deg,transparent 0 23px,#dfbd7040 24px 26px);border:12px double #c8a969;box-shadow:0 0 35px #111b;will-change:transform}
+.opening-scene__door:after{content:'';position:absolute;inset:18% 13%;border:2px solid #ead9a7;background:repeating-linear-gradient(45deg,transparent 0 12px,#ead9a72e 13px 14px)}
+.opening-scene__door--left{left:0;transform-origin:left center}.opening-scene__door--right{right:0;transform-origin:right center}
+.opening-scene.is-active .opening-scene__door--left{animation:doorLeft 2.15s .28s cubic-bezier(.73,0,.13,1) both}
+.opening-scene.is-active .opening-scene__door--right{animation:doorRight 2.15s .28s cubic-bezier(.73,0,.13,1) both}
+.opening-scene__text{position:absolute;left:0;right:0;top:18%;display:grid;place-items:center;color:var(--ink);text-align:center;text-shadow:0 2px 10px #fff;opacity:0;transform:translateY(26px) scale(.9)}
+.opening-scene.is-active .opening-scene__text{animation:titleReveal 1.35s 2.6s ease both}
+.opening-scene__text>span{font:600 1.15rem var(--serif)}
+.opening-scene__text>div{display:grid;margin:12px 0 8px;font:600 3.5rem/.65 var(--serif)}
+.opening-scene__text>div i{font:400 2.4rem/.8 var(--script);color:var(--terracotta)}
+.opening-scene__text>strong{font:600 1.18rem var(--serif);letter-spacing:.06em}
+.opening-scene__petals i{position:absolute;top:-10%;width:14px;height:9px;border-radius:70% 20% 70% 20%;background:#be6c62;opacity:.8}
+.opening-scene__petals i:nth-child(1){left:12%;animation:petalFall 4.1s .4s linear infinite}.opening-scene__petals i:nth-child(2){left:28%;animation:petalFall 5.2s 1.2s linear infinite}.opening-scene__petals i:nth-child(3){left:43%;animation:petalFall 4.7s .1s linear infinite}.opening-scene__petals i:nth-child(4){left:59%;animation:petalFall 5.4s 1.8s linear infinite}.opening-scene__petals i:nth-child(5){left:74%;animation:petalFall 4.5s .7s linear infinite}.opening-scene__petals i:nth-child(6){left:88%;animation:petalFall 5s 1.4s linear infinite}
+
+/* Hero */
+.motion-hero{min-height:100svh;display:grid;place-items:center;background:#ead9bb;isolation:isolate}
+.motion-hero__art{position:absolute;inset:-4%;z-index:-2;background:url('./assets/betawi-garden.webp') center/cover no-repeat;animation:heroDrift 15s ease-in-out infinite alternate}
+.motion-hero__shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#fff2 0,#222d1722 58%,#1e2c1eb5 100%)}
+.motion-hero__copy{margin-top:-18vh;padding:18px 30px;text-align:center;color:var(--ink);background:radial-gradient(ellipse at center,#f8ebccbf 0,transparent 72%);text-shadow:0 1px 6px #fff}
+.monogram{display:grid;margin:12px 0 10px;font:600 3.7rem/.66 var(--serif)}
+.monogram i{font:400 2.4rem/.8 var(--script);color:var(--terracotta)}
+.motion-hero__copy p{margin:0;font:600 1.15rem var(--serif);letter-spacing:.08em}
+.scroll-note{position:absolute;left:50%;top:calc(100% + 36vh);transform:translateX(-50%);white-space:nowrap;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:#fff}
+.scroll-note:after{content:'';display:block;width:1px;height:35px;margin:10px auto;background:#fff;animation:scrollLine 1.7s ease-in-out infinite}
+
+/* Pantun */
+.pantun{padding:92px 0 0;min-height:920px;background-color:#72763b;background-image:linear-gradient(#606b2bd9,#626b2be8),url('./assets/betawi-garden.webp');background-size:cover;background-position:center}
+.portrait-frame{position:relative;width:82%;margin:45px auto 46px;border:3px solid #f6e4bf;padding:8px;background:#fff6;box-shadow:0 24px 45px #1c291a75;transform:rotate(-1deg)}
+.portrait-frame:before{content:'';position:absolute;inset:-18px;border:1px solid #dfc991;pointer-events:none}
+.portrait-frame img{width:100%;height:410px;object-fit:cover;object-position:center}
+.corner-flower{position:absolute;right:-20px;top:-38px;font-size:5rem;color:#d9ad8e;text-shadow:8px 5px 0 #753c31;animation:sway 5s ease-in-out infinite}
+.pantun__copy{width:82%;margin:auto;text-align:center;color:#fff2d3}
+.pantun__copy .section-kicker{color:#f3d5b2}
+.pantun__copy h2{margin:5px 0 15px;font:600 2rem/1 var(--serif)}
+.pantun__copy>p:last-child{font:500 1.08rem/1.75 var(--serif)}
+.tumpal-divider{height:94px;margin-top:60px;background-color:var(--paper);clip-path:polygon(0 55%,5% 30%,10% 55%,15% 30%,20% 55%,25% 30%,30% 55%,35% 30%,40% 55%,45% 30%,50% 55%,55% 30%,60% 55%,65% 30%,70% 55%,75% 30%,80% 55%,85% 30%,90% 55%,95% 30%,100% 55%,100% 100%,0 100%)}
+
+/* Couple */
+.couple{padding:65px 0 175px;text-align:center}
+.floral-crown{position:absolute;top:-12px;left:50%;translate:-50% 0;font-size:4.8rem;color:var(--terracotta);opacity:.8}
+.arabic{margin:0 0 15px;font:500 3rem serif;color:var(--ink)}
+.greeting{margin:0 0 16px;font:600 1.3rem var(--serif)}
+.intro{max-width:360px;margin:0 auto 55px;font-size:.82rem;line-height:1.8;color:#435342}
+.person-card{display:grid;grid-template-columns:44% 1fr;align-items:center;gap:16px;text-align:left;margin:0 0 30px}
+.person-card--reverse{grid-template-columns:1fr 44%;text-align:right}.person-card--reverse .person-photo{order:2}
+.person-photo{position:relative;padding:7px;background:#f8ead0;border:1px solid #b49a5c;box-shadow:0 12px 25px #2c3d2525}
+.person-photo:after{content:'';position:absolute;inset:-8px 6px 6px -8px;border:1px solid #a44c3d;z-index:-1}
+.person-photo img{width:100%;height:255px;object-fit:cover;object-position:center top}
+.script-name{display:block;font:400 3.2rem/.8 var(--script);color:var(--terracotta)}
+.person-copy h3{margin:10px 0 8px;font:600 1.45rem var(--serif)}
+.person-copy p{font-size:.67rem;line-height:1.6}.person-copy a{font-size:.68rem;color:var(--olive);text-decoration:none;border-bottom:1px solid}
+.ampersand{margin:20px 0 32px;font:400 3.8rem var(--script);color:var(--terracotta)}
+.flower-bed{position:absolute;left:-8%;right:-8%;bottom:-35px;height:210px;background:url('./assets/betawi-garden.webp') center 91%/145% auto no-repeat;filter:drop-shadow(0 -10px 18px #24351c18);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 46%,#000 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 46%,#000 100%)}
+
+/* Events */
+.heritage-section{padding:95px 0 120px;background:#293f2f url('./assets/betawi-garden.webp') center/cover fixed;color:#fff;text-align:center}
+.heritage-section:before{content:'';position:absolute;inset:0;background:linear-gradient(#203323e8,#203323dc)}
+.event-card{position:relative;margin:35px auto 0;padding:46px 28px 38px;background:#f5e8cced;color:var(--ink);border:8px double #b49859;box-shadow:0 18px 40px #1119}
+.event-card:before,.event-card:after{content:'◆';position:absolute;top:10px;color:var(--terracotta)}.event-card:before{left:13px}.event-card:after{right:13px}
+.event-card__icon{display:block;font:600 2.1rem var(--serif);color:var(--terracotta)}
+.event-card h3{margin:4px 0 13px;font:600 2.25rem var(--serif)}
+.event-card p{font:500 .83rem/1.7 var(--sans)}
+.event-date{letter-spacing:.06em;font-weight:600!important}
+.event-rule{width:70%;height:1px;margin:16px auto;background:linear-gradient(90deg,transparent,var(--terracotta),transparent)}
+
+/* Countdown */
+.countdown{min-height:710px;padding:95px 0 210px;text-align:center}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:35px}
+.countdown-grid div{padding:17px 5px;border-radius:17px 17px 5px 5px;color:#fff;background:linear-gradient(160deg,#667335,#8a8d47);box-shadow:0 10px 20px #42502535}
+.countdown-grid strong{display:block;font:600 2rem var(--serif)}
+.countdown-grid span{display:block;font:500 .58rem var(--sans)}
+.flower-field{position:absolute;left:-14%;right:-14%;bottom:-45px;height:275px;background:url('./assets/betawi-garden.webp') center 94%/145% auto no-repeat;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 42%,#000 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 42%,#000 100%)}
+
+/* Gallery */
+.gallery{padding:90px 0 130px;text-align:center}
+.gallery-quote{margin:15px auto 30px;max-width:320px;font:italic 1.04rem/1.5 var(--serif);color:#6d5948}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:205px;gap:9px}
+.gallery-item{position:relative;overflow:hidden;padding:0;border:0;background:#d8cbb2;cursor:zoom-in}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease,filter .8s ease}
+.gallery-item:after{content:'';position:absolute;inset:0;background:linear-gradient(140deg,transparent 40%,#e8c67b38);opacity:0;transition:opacity .6s ease}
+.gallery-item:hover img{transform:scale(1.07);filter:saturate(1.08)}.gallery-item:hover:after{opacity:1}
+.gallery-item--tall{grid-row:span 2}.gallery-item--wide{grid-column:span 2;height:270px}
+
+/* Story */
+.story{min-height:1050px;padding:110px 0;background:url('./assets/betawi-garden.webp') center/cover fixed;color:#fff;text-align:center}
+.story-overlay{position:absolute;inset:0;background:linear-gradient(#233b2ad9,#263725ed)}
+.story-content{position:relative}
+.timeline{position:relative;margin-top:52px}.timeline:before{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:#d9c38775}
+.timeline-item{position:relative;width:86%;margin:0 auto 34px;padding:25px 25px 25px 62px;background:#f4e6cfe8;color:var(--ink);text-align:left;border:1px solid #d6be80;box-shadow:0 14px 28px #0005}
+.timeline-item:before{content:'✦';position:absolute;left:24px;top:27px;color:var(--terracotta)}
+.timeline-item span{font:600 .72rem var(--sans);letter-spacing:.16em;color:var(--terracotta)}
+.timeline-item h3{margin:4px 0 8px;font:600 1.7rem var(--serif)}
+.timeline-item p{margin:0;font-size:.75rem;line-height:1.7}
+
+/* RSVP */
+.rsvp{padding:95px 0 115px;text-align:center}
+.rsvp-form{display:grid;gap:14px;margin-top:32px;padding:25px;text-align:left;background:#fff8e9;border:1px solid #cbb17b;box-shadow:0 15px 32px #5c4a2a20}
+.rsvp-form label{display:grid;gap:7px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#5d6c59}
+.rsvp-form input,.rsvp-form textarea,.rsvp-form select{width:100%;padding:12px 13px;border:1px solid #c8b78f;border-radius:4px;background:#fffdf6;color:var(--ink);outline:none;text-transform:none;letter-spacing:0;font-weight:400}
+.rsvp-form input:focus,.rsvp-form textarea:focus,.rsvp-form select:focus{border-color:var(--olive);box-shadow:0 0 0 3px #6b78351a}
+.wishes{display:grid;gap:10px;margin-top:20px;text-align:left}
+.wish{padding:15px 17px;background:#eee1c8;border-left:3px solid var(--terracotta)}
+.wish strong{font:600 1rem var(--serif)}.wish span{float:right;font-size:.6rem;color:#6c765a}.wish p{margin:6px 0 0;font-size:.72rem;line-height:1.6}
+
+/* Gift */
+.gift{padding:95px 0 120px;text-align:center;background-color:#697137;background-image:linear-gradient(#48532ccf,#48532ce6),url('./assets/betawi-garden.webp');background-size:cover}
+.gift-intro{font:500 .82rem/1.8 var(--sans);color:#fff4d5}
+.bank-card{display:grid;gap:6px;margin:20px 0;padding:25px;background:#f8edd8;color:var(--ink);border:6px double #bea66a;box-shadow:0 16px 30px #26311c80}
+.bank-card small{text-transform:uppercase;letter-spacing:.14em}.bank-card strong{font:600 1.65rem var(--serif)}.bank-card span{font-size:.7rem}
+.copy-button{justify-self:center;margin-top:8px;padding:8px 15px;border:1px solid var(--olive);border-radius:999px;color:var(--olive-deep);background:transparent;font-size:.66rem;cursor:pointer}
+
+/* Closing */
+.closing{min-height:760px;color:#fff;display:flex;align-items:flex-end;text-align:center}
+.closing__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%}
+.closing__veil{position:absolute;inset:0;background:linear-gradient(180deg,#23371e12 20%,#162018e8 78%,#111811 100%)}
+.closing__copy{position:relative;padding:0 9% 78px;text-shadow:0 2px 10px #000}
+.closing__copy p{font:italic 1.04rem/1.55 var(--serif)}.closing__copy span{font-size:.63rem;letter-spacing:.1em}.closing__copy h2{margin:24px 0 4px;font:400 3rem var(--script);color:#efd4a7}.closing__copy h3{margin:0;font:600 2rem var(--serif)}
+footer{display:grid;justify-items:center;gap:3px;padding:22px;color:#d8ceb9;background:#17251c;font-size:.61rem;letter-spacing:.06em}footer a{color:#efd08f;text-decoration:none;font-size:.8rem;font-weight:600}
+
+/* Floating controls */
+.music-toggle{position:fixed;z-index:80;right:max(calc((100vw - 500px)/2 + 18px),18px);bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #f5ddb1;background:#33482f;color:#fff;box-shadow:0 8px 25px #0006;cursor:pointer}
+.music-toggle span,.music-toggle span:before,.music-toggle span:after{position:absolute;bottom:13px;width:3px;border-radius:3px;background:#f8e8bd;animation:equalize .9s ease-in-out infinite alternate}.music-toggle span{left:20px;height:18px}.music-toggle span:before,.music-toggle span:after{content:'';bottom:0}.music-toggle span:before{left:-7px;height:11px;animation-delay:-.3s}.music-toggle span:after{left:7px;height:15px;animation-delay:-.6s}.music-toggle.is-paused span,.music-toggle.is-paused span:before,.music-toggle.is-paused span:after{animation-play-state:paused;height:4px}
+.lightbox{position:fixed;z-index:1200;inset:0;display:grid;place-items:center;background:#10150ff2;padding:24px}.lightbox[hidden]{display:none}.lightbox img{max-width:min(92vw,470px);max-height:87vh;object-fit:contain;box-shadow:0 20px 60px #000}.lightbox button{position:absolute;top:18px;right:max(calc((100vw - 500px)/2 + 18px),18px);width:40px;height:40px;border:1px solid #fff6;border-radius:50%;color:#fff;background:#0005;font-size:1.8rem;cursor:pointer}
+.toast{position:fixed;z-index:1500;left:50%;bottom:76px;translate:-50% 15px;padding:9px 16px;border-radius:999px;background:#17251deb;color:#fff;font-size:.68rem;opacity:0;visibility:hidden;transition:.3s;white-space:nowrap}.toast.show{opacity:1;visibility:visible;translate:-50% 0}
+
+/* Reveal choreography */
+.reveal-up,.reveal-left,.reveal-right,.reveal-zoom{opacity:0;transition:opacity 1.55s ease,transform 1.85s cubic-bezier(.2,.65,.2,1)}
+.reveal-up{transform:translateY(75px)}.reveal-left{transform:translateX(-75px)}.reveal-right{transform:translateX(75px)}.reveal-zoom{transform:scale(.58)}
+.is-visible{opacity:1;transform:none}
+
+@keyframes coverBreath{to{transform:scale(1.045)}}
+@keyframes coverCopy{from{opacity:0;transform:translateY(35px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes cinemaPush{0%{transform:scale(1.18);filter:blur(7px) sepia(.25)}100%{transform:scale(1);filter:blur(0) sepia(.08)}}
+@keyframes lightBloom{0%,20%{opacity:0}50%{opacity:1}100%{opacity:.25}}
+@keyframes doorLeft{to{transform:perspective(900px) rotateY(-105deg) translateX(-18%)}}
+@keyframes doorRight{to{transform:perspective(900px) rotateY(105deg) translateX(18%)}}
+@keyframes titleReveal{to{opacity:1;transform:none}}
+@keyframes petalFall{0%{transform:translate(0,-10vh) rotate(0);opacity:0}12%{opacity:.85}100%{transform:translate(42px,115vh) rotate(540deg);opacity:.1}}
+@keyframes heroDrift{to{transform:scale(1.055) translateY(-1.4%)}}
+@keyframes scrollLine{0%,100%{transform:scaleY(.2);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+@keyframes sway{0%,100%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(6deg) scale(1.08)}}
+@keyframes equalize{to{height:7px}}
+
+@media (min-width:501px){.site-shell{border-left:1px solid #d5bd8a44;border-right:1px solid #d5bd8a44}.cover,.opening-scene{box-shadow:0 0 0 100vmax #111}}
+@media (max-width:380px){.cover h1{font-size:3.1rem}.person-photo img{height:220px}.person-card{gap:10px}.script-name{font-size:2.7rem}.countdown-grid strong{font-size:1.7rem}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}.reveal-up,.reveal-left,.reveal-right,.reveal-zoom{opacity:1;transform:none;transition:none}}
